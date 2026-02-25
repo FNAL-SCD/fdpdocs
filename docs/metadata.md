@@ -2,14 +2,12 @@
 
 ## Prerequisites
 
-1. Obtain access to amsc VO.  <!-- add link to documentation on getting added to amsc vo -->
+1. Obtain access to amsc VO.  <!-- add link to documentation on getting added to amsc vo once it exists -->
 1. Set up the software environment.
 
-Create a python environment to install metacat-client and htgettoken.
+Create a python environment.
 
-    python -m venv ~/.venv/metacat
-    pip install metacat-client
-    pip install htgettoken
+    python3 -m venv ~/.venv/metacat
 
 Create a script called `activate-metacat.sh` that activates the environment and sets the required environment variables with the following contents:
 
@@ -18,7 +16,13 @@ Create a script called `activate-metacat.sh` that activates the environment and 
     export METACAT_SERVER_URL="https://metacat.fnal.gov:9443/amsc_meta_prod/app"
     export METACAT_AUTH_SERVER_URL="https://metacat.fnal.gov:8143/auth/amsc"
 
-Then every time you want to use MetaCat, do
+Activate the environment and install the metacat client and htgettoken packages:
+
+    source activate-metacat.sh
+    pip install metacat-client
+    pip install htgettoken
+
+Every time you want to use MetaCat, do
 
     source activate-metacat.sh
 
