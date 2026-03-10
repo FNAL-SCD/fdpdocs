@@ -61,7 +61,7 @@ Using gfal, which requires the `gfal2-*` packages:
 
 ### Download project specific data requiring authorization using curl
 
-Below is an example of using OIDC token authirized to access dune project directories for read:
+Below is an example of using OIDC token authorized to access dune project directories for read:
 
     htgettoken -a htvaultprod.fnal.gov -i amsc -r duneread 
     export BEARER_TOKEN=$(< $XDG_RUNTIME_DIR/bt_u$(id -u))
@@ -69,7 +69,7 @@ Below is an example of using OIDC token authirized to access dune project direct
 
 ### Download project specific data requiring authorization using gfal
 
-Below is an example of using OIDC token authirized to access dune project directories for read:
+Below is an example of using OIDC token authorized to access dune project directories for read:
 
     htgettoken -a htvaultprod.fnal.gov -i amsc -r duneread 
     export BEARER_TOKEN=$(< $XDG_RUNTIME_DIR/bt_u$(id -u))
