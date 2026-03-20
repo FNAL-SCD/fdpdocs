@@ -60,12 +60,12 @@ Then on the client machine / desktop:
   prompt. You will get your globus access token in return. Set GLOBUS_ACCES_TOKEN to Ths globus access token can be used to initiate transfers.
   Example:
   ```
-  export GLOBUS_ACCES_TOKEN="Ag...." # (your globus access token)
+  export GLOBUS_ACCESS_TOKEN="Ag...." # (your globus access token)
 
   curl -X 'POST' \
   'https://amsc-data-api.nersc.gov/transfer/globus' \
   -H 'accept: application/json' \
-  -H "Authorization: $GLOBUS_ACCES_TOKEN" \
+  -H "Authorization: $GLOBUS_ACCESS_TOKEN" \
   -H 'Content-Type: application/json' \
   -d '{ \
   "source_url": "globus://b35955d3-14d1-4aab-a1c9-189989f7d8d0/amsc/cms/aoj/", \
