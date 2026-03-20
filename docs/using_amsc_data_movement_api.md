@@ -1,6 +1,6 @@
 Current implementation of AMSC data movement API allows to transfer
-datasets between globus end points using globus access tokens. Having 
-accounts on both globus end points is currently prerequisite
+datasets between globus end-points using globus access tokens. Having 
+accounts on both globus end-points is currently prerequisite.
 
 # AMSC data movemenr API
 
