@@ -57,7 +57,7 @@ Then on the client machine / desktop:
   ```
   Enter the resulting Authorization Code here:
   ```
-  prompt. You will get your globus access token in retun. Set GLOBUS_ACCES_TOKEN to Ths globus access token can be used to initiate transfers.
+  prompt. You will get your globus access token in return. Set GLOBUS_ACCES_TOKEN to Ths globus access token can be used to initiate transfers.
   Example:
   ```
   export GLOBUS_ACCES_TOKEN="Ag...." # (your globus access token)
