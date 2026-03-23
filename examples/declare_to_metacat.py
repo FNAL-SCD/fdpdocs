@@ -30,9 +30,12 @@ def metacat_dataset(name, ns, dsmdfile):
         logger.info(f"Dataset {name} already exists, skipping creation")
     else:
         # create the dataset
-        with open(dsmdfile, "r") as f:
-            dsmd = json.load(f)
-        result = client.create_dataset(did, metadata=dsmd)
+        if dsmdfile is None:
+            result = client.create_dataset(did)
+        else:
+            with open(dsmdfile, "r") as f:
+                dsmd = json.load(f)
+            result = client.create_dataset(did, metadata=dsmd)
         logger.info(result)
 
 # declare the files from the metadata file and add them to metacat; returns the number of files added
