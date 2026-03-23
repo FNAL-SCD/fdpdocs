@@ -99,7 +99,7 @@ For now only the above fields are used by the central AmSC data catalog. If you 
 
     The extension and outfile are optional arguments. If not given an extension, it will use everything in the given directory. If not given an output file, it will write the metadata to `data-directory/metadata/metadata.json`.
 
-Using the remote script is similar, except that you give a URL to the data directory and the if the outfile is omitted it wil just print to standard output.
+    Using the remote script is similar, except that you give a URL to the data directory and the if the outfile is omitted it wil just print to standard output.
 
         python generate_metadata.py --data-directory https://amsc.fnal.gov:2880/path/to/dir --namespace my_namespace --dataset my_dataset --outfile metadata.json
 
