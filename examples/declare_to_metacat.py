@@ -48,7 +48,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument("--dataset", "-d", required=True, help="MetaCat dataset where metadata will be added")
     parser.add_argument("--namespace", "-n", required=True, help="MetaCat namespace where metadata will be added")
-    parser.add_argument("--metadatafile", "-m", required=True, help="Name of the json file that contains the generated metadata")
+    parser.add_argument("--metadatafile", "-m", required=False, help="Name of the json file that contains the generated metadata")
     parser.add_argument("--datasetmetadata", "-s", required=False, help="Name of the json file that contains metadata fields for the dataset.")
     args = parser.parse_args()
 
@@ -59,11 +59,14 @@ if __name__ == '__main__':
     batchfile = args.metadatafile
     dsmdfile = args.datasetmetadata
 
-    # creates the namespace and dataset and adds the files to metacat
+    # create the namespace and dataset
     logging.info("Creating namespace and dataset")
     metacat_namespace(namespace)
     metacat_dataset(dataset, namespace, dsmdfile)
-    logging.info("Declaring and adding files to dataset")
-    num_files = metacat_declare_add(dataset, batchfile, namespace)
-    logging.info(f"Added {num_files} to dataset {dataset}")
+
+    # add the files to metacat
+    if dsmdfile is not None:
+        logging.info("Declaring and adding files to dataset")
+        num_files = metacat_declare_add(dataset, batchfile, namespace)
+        logging.info(f"Added {num_files} to dataset {dataset}")
 
