@@ -2,13 +2,13 @@ Current implementation of AMSC data movement API allows to transfer
 datasets between globus end-points using globus access tokens. Having 
 accounts on both globus end-points is currently prerequisite.
 
-# AMSC data movemenr API
+# AMSC data movement API
 
 LBNL runs prototype implementation of AMSC data movement API server
 at https://amsc-data-api.nersc.gov. There is swagger UI with RES APIs 
 documenation https://amsc-data-api.nersc.gov/docs
 
-# How to transfer data between FDP and Nersc globus end point using AMSC data movemenr API
+# How to transfer data between FDP and Nersc globus end point using AMSC data movement API
 
 First, one has to obtain account at Nersc. 
 
@@ -27,12 +27,12 @@ Then on the client machine / desktop:
   uv pip install  typer
   uv pip install  globus_sdk
   ```
-* Download a handy client script that generates globus access token
+* download a handy client script that generates globus access token
   ```
   curl https://gist.githubusercontent.com/tylern4/924b19e58d75046e593e0db2d87f6c5c/raw/3e008fb6c0c9d21d429e5a779d2866c8f74e5072/generate_token.py \
      -o generate_token.py
   ```
-* Run the script like so:
+* run the script like so:
   ```
   uv run generate_token_new.py login --mapped-collections <UUID1> --mapped-collections <UUID2> --domain nersc.gov
   ```
