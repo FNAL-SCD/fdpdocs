@@ -2,7 +2,7 @@ import json
 import logging
 import argparse
 import os
-import hashlib
+import zlib
 import glob
 
 # Initialize logger
@@ -10,11 +10,11 @@ logger = logging.getLogger(__name__)
 
 # Generate file checksum
 def checksum(filepath):
-    hash_func = hashlib.sha256()
+    adler = 1
     with open(filepath, "rb") as f:
         for chunk in iter(lambda: f.read(4096), b""):
-            hash_func.update(chunk)
-    return hash_func.hexdigest()
+            adler = zlib.adler32(chunk, adler)
+    return f"{adler:08x}"
 
 # Generate metadata in metacat format
 def generate_metadata(namespace, dsname, filename, directory):
@@ -22,7 +22,7 @@ def generate_metadata(namespace, dsname, filename, directory):
     filepath = os.path.join(directory, filename)
     filesize = os.path.getsize(filepath)
     chksm = checksum(filepath)
-    checksum_dict = {"sha256": chksm}
+    checksum_dict = {"adler32": chksm}
 
     # file metadata required for amsc
     description = f"This is a file from the {dsname} dataset"
@@ -33,8 +33,8 @@ def generate_metadata(namespace, dsname, filename, directory):
 
     # create the metadata dictionary
     md = {
-        "namespace": namespace,
         "name": filename,
+        "namespace": namespace,
         "size": filesize,
         "checksums": checksum_dict,
         "metadata" : {

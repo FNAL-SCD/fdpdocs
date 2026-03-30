@@ -156,9 +156,10 @@ class InfoGetter:
             "size": {finfo[1]},
             "checksums": {finfo[2]},
             "metadata": {{
+                "AmSC.common.type": "artifact",
                 "AmSC.common.description": "File {finfo[0]}{dataset_txt} in {finfo[3]}",
-                "AmSC.common.display_name": "{finfo[0]}",
                 "AmSC.common.location": "{finfo[3]}/{finfo[0]}",
+                "AmSC.common.display_name": "{finfo[0]}",
                 "AmSC.common.tags": "",
                 "AmSC.common.version": "",
                 "AmSC.artifact.format": "{mimetype}"
