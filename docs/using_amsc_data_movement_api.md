@@ -34,11 +34,11 @@ Then on the client machine / desktop:
   ```
 * Run the script like so:
   ```
-  uv run generate_token_new.py login --mapped-collections <UUID1> --mapped-collections <UUID2> --domain nersc.gov
+  uv run generate_token.py login --mapped-collections <UUID1> --mapped-collections <UUID2> --domain nersc.gov
   ```
   Where UUIDs are UUIDs of globus source and collections. Specifically, using FDP and my account at Nersc:
   ```
-  uv run generate_token_new.py login \
+  uv run generate_token.py login \
       --mapped-collections b35955d3-14d1-4aab-a1c9-189989f7d8d0 \
       --mapped-collections 9d6d994a-6d04-11e5-ba46-22000b92c6ec \
       --domain nersc.gov
