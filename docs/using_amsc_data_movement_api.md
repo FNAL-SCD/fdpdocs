@@ -88,7 +88,7 @@ Then on the client machine / desktop:
   ```
   that can be used to query request status:
   ```
-  curl  -s  -H 'Authorization: $GLOBUS_ACCESS_TOKEN' \
+  curl  -s  -H "Authorization: $GLOBUS_ACCESS_TOKEN" \
    -H 'Content-Type: application/json' \
    "https://amsc-data-api.nersc.gov/transfer/globus/6ec65387-2322-11f1-927c-02ea150f82e1"
   ```
