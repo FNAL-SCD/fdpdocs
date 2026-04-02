@@ -99,6 +99,8 @@ For now only the above fields are used by the central AmSC data catalog. If you 
 
     The extension and outfile are optional arguments. If not given an extension, it will use everything in the given directory. If not given an output file, it will write the metadata to `data-directory/metadata/metadata.json`.
 
+    Note that it will use the data directory to form a URL for the location metadata field, which may or may not correlate to the correct location in dCache depending on the local path.
+
     Using the remote script is similar, except that you give a URL to the data directory and if the outfile is omitted it will just print to standard output.
 
         python generate_metadata_remote.py --data-directory https://amsc.fnal.gov:2880/path/to/dir --namespace my_namespace --dataset my_dataset --outfile metadata.json
