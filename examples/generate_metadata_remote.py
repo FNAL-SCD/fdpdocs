@@ -11,6 +11,16 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 import logging
 logger = logging.getLogger(__name__)
 
+def nsubdirs(n, path):
+    rl = []
+    for i in range(n):
+        path = os.path.dirname(path)
+        rl.insert(0,os.path.basename(path))
+    if rl:
+        return "/".join(rl) + "/"
+    else:
+        return ""
+
 class InfoGetter:
     def __init__(self, namespace="amsc", dataset=None):
         self.s = requests.Session()
@@ -33,7 +43,7 @@ class InfoGetter:
         token = open(token_file, "r").read().strip()
         return token
 
-    def get_files( self, basedir):
+    def get_files( self, basedir, nsd=0):
         logger.debug(f"get_files: {basedir=}")
         headers = self.token_header.copy()
         headers["Depth"] = "1"
@@ -48,6 +58,8 @@ class InfoGetter:
         curname = None
         filename = None
         size = None
+
+        subdir = nsubdirs(nsd, basedir + "/x")
 
         def start_element(name, attrs):
             nonlocal curname, filename, size
@@ -95,7 +107,7 @@ class InfoGetter:
                     cstype = data["checksums"][0]["type"].lower()
                     checksums = f'{{ "{cstype}": "{csvalue}" }}'
 
-            self.file_checksum_list.append( (filename, size, checksums, basedir))
+            self.file_checksum_list.append( (subdir + filename, size, checksums, basedir))
         logger.debug(f"after checksums: {self.file_checksum_list=}")
 
     def get_file_list(self):
@@ -170,7 +182,6 @@ class InfoGetter:
 
         if self.file_checksum_list:
             print("\n]", file=outfile)
-
  
 def main():
     level = logging.INFO
@@ -180,6 +191,7 @@ def main():
     parser.add_argument("-n", "--namespace",  default="amsc")
     parser.add_argument("-o", "--outfile", default=None)
     parser.add_argument("--debug", default=False)
+    parser.add_argument("--nsubdirs", "-N", help="Number of subdirectories to include in name for uniqueness", type=int, default=0)
 
     args = parser.parse_args()
 
@@ -197,7 +209,7 @@ def main():
     ig = InfoGetter(namespace=args.namespace, dataset=args.dataset)
 
     for basedir in args.data_directory:
-        ig.get_files(basedir.strip("/"))
+        ig.get_files(basedir.strip("/"), nsd = args.nsubdirs)
 
     ig.generate(outfile)
 

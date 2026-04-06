@@ -8,6 +8,16 @@ import glob
 # Initialize logger
 logger = logging.getLogger(__name__)
 
+def nsubdirs(n, path):
+    rl = []
+    for i in range(n):
+        path = os.path.dirname(path)
+        rl.insert(0,os.path.basename(path))
+    if rl:
+        return "/".join(rl) + "/"
+    else:
+        return ""
+
 # Generate file checksum
 def checksum(filepath):
     adler = 1
@@ -19,7 +29,7 @@ def checksum(filepath):
 # Generate metadata in metacat format
 def generate_metadata(namespace, dsname, filename, directory):
     # basic file metadata required for metacat
-    filepath = os.path.join(directory, filename)
+    filepath = os.path.join(directory, os.path.basename(filename))
     filesize = os.path.getsize(filepath)
     chksm = checksum(filepath)
     checksum_dict = {"adler32": chksm}
@@ -59,6 +69,7 @@ if __name__ == '__main__':
     parser.add_argument("--namespace", "-n", required=True, help="MetaCat namespace where metadata will be added (required)")
     parser.add_argument("--dataset", "-s", required=True, help="Name of the MetaCat dataset where metadata will be added (required)")
     parser.add_argument("--outfile", "-o", help="Name of the json file to contain the generated metadata. If not provided, it will be written to data-directory/metadata/metadata.json")
+    parser.add_argument("--nsubdirs", "-N", help="Number of subdirectories to include in name for uniqueness", type=int, default=0)
     args = parser.parse_args()
 
     logging.basicConfig(format='%(asctime)s %(levelname)s %(message)s', level=logging.INFO)
@@ -90,8 +101,11 @@ if __name__ == '__main__':
 
     md = []
     for file in files:
-        filename = os.path.basename(file)
-        file_metadata = generate_metadata(namespace, dsname, filename, directory)
+        filename = nsubdirs(args.nsubdirs, file ) + os.path.basename(file)
+        try:
+            file_metadata = generate_metadata(namespace, dsname, filename, directory)
+        except IsADirectoryError:
+            continue
         md.append(file_metadata)
 
     # write the metadata to json file
