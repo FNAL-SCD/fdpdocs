@@ -103,6 +103,8 @@ Using the remote script is similar, except that you give a URL to the data direc
 
         python generate_metadata.py --data-directory https://amsc.fnal.gov:2880/path/to/dir --namespace my_namespace --dataset my_dataset --outfile metadata.json
 
+Both scripts now also take a `--nsubdirs N` option, which tells it to include the last N subdirectories in the filename, usually to make it unique.   That is if you have /directory1/subidir1/file1 and /directory2/subdir2/file1 you can pass in `--nsubdirs 1` to have the names be subdir1/file1 and subdir2/file1 in the metadata.
+
     An example of running this script:
 
         python generate_metadata.py --data-directory /amsc/cms/aoj/data/ --extension .h5 --namespace cms --dataset aoj --outfile aoj_metadata.json
