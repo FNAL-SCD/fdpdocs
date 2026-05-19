@@ -105,8 +105,19 @@ For now only the above fields are used by the central AmSC data catalog. If you 
 
         python generate_metadata_remote.py --data-directory https://amsc.fnal.gov:2880/path/to/dir --namespace my_namespace --dataset my_dataset --outfile metadata.json
 
-Both scripts now also take a `--nsubdirs N` option, which tells it to include the last N subdirectories in the filename, usually to make it unique.   That is if you have /directory1/subidir1/file1 and /directory2/subdir2/file1 you can pass in `--nsubdirs 1` to have the names be subdir1/file1 and subdir2/file1 in the metadata.
+    **Metadata formatting**
 
+    MetaCat requires file names to be unique within a namespace. To help with this, both scripts take a `--nsubdirs N` option, which tells it to include the last N subdirectories in the filename, usually to make it unique.   That is if you have /directory1/subdir1/file1 and /directory2/subdir2/file1 you can pass in `--nsubdirs 1` to have the names be subdir1/file1 and subdir2/file1 in the metadata.
+
+    There are also certain characters that are not allowed to be present in filenames. The accepted characters are: a-z, A-Z, 0-9, -._/  There are two options that can help.
+
+    `--ignore-bad-files I` will create the file metadata for files that have allowed filenames and ignore the files that do not. A list of skipped files will be logged.
+
+    `--fix-bad-files F` will replace invalid characters in filenames with underscores and generate their metadata.
+
+    If neither of these options are passed and there are invalid characters in any filenames, it will print out the list of files with invalid characters and exit. No metadata will be generated.
+
+    **Example**
     An example of running this script:
 
         python generate_metadata.py --data-directory /amsc/cms/aoj/data/ --extension .h5 --namespace cms --dataset aoj --outfile aoj_metadata.json

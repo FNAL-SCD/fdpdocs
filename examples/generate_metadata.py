@@ -4,6 +4,8 @@ import argparse
 import os
 import zlib
 import glob
+import sys
+from filename_validator import filename_validator
 
 # Initialize logger
 logger = logging.getLogger(__name__)
@@ -35,7 +37,7 @@ def globus_uuid(namespace):
     return uuid
 
 # Generate metadata in metacat format
-def generate_metadata(namespace, dsname, filename, directory):
+def generate_metadata(namespace, dsname, filename, directory, fix=False):
     # basic file metadata required for metacat
     filepath = os.path.join(directory, os.path.basename(filename))
     filesize = os.path.getsize(filepath)
@@ -44,6 +46,11 @@ def generate_metadata(namespace, dsname, filename, directory):
 
     # globus collection uuid
     uuid = globus_uuid(namespace)
+
+    # fix the names of the filenames that need fixing
+    if fix==True:
+        filename = fv.fix(filename)
+        filepath = os.path.join(directory, os.path.basename(filename))
 
     # file metadata required for amsc
     description = f"This is a file from the {dsname} dataset"
@@ -62,7 +69,7 @@ def generate_metadata(namespace, dsname, filename, directory):
         "metadata" : {
             "AmSC.common.type" : "artifact",
             "AmSC.common.description" : description,
-            "AmSC.common.location" : webdav_url,
+            "AmSC.common.location" : globus_loc,
 
             # insert your own metadata here
 
@@ -82,6 +89,8 @@ if __name__ == '__main__':
     parser.add_argument("--dataset", "-s", required=True, help="Name of the MetaCat dataset where metadata will be added (required)")
     parser.add_argument("--outfile", "-o", help="Name of the json file to contain the generated metadata. If not provided, it will be written to data-directory/metadata/metadata.json")
     parser.add_argument("--nsubdirs", "-N", help="Number of subdirectories to include in name for uniqueness", type=int, default=0)
+    parser.add_argument("--ignore-bad-files", "-I", action='store_true', help="Create the file metadata for files that have allowed filenames and ignore the files that do not")
+    parser.add_argument("--fix-bad-files", "-F", action='store_true', help="Replace invalid characters in filenames with '_' and generate their metadata")
     args = parser.parse_args()
 
     logging.basicConfig(format='%(asctime)s %(levelname)s %(message)s', level=logging.INFO)
@@ -109,16 +118,44 @@ if __name__ == '__main__':
         pattern = os.path.join(directory, "*")
     files = glob.glob(pattern)
     num_files = len(files)
-    logger.info(f"Generating metadata for {num_files} files")
+    logger.info(f"Trying to generate metadata for {num_files} files")
 
     md = []
+    fv = filename_validator()
+    bad_files = []
     for file in files:
         filename = nsubdirs(args.nsubdirs, file ) + os.path.basename(file)
-        try:
-            file_metadata = generate_metadata(namespace, dsname, filename, directory)
-        except IsADirectoryError:
-            continue
-        md.append(file_metadata)
+        if fv.check(filename) is False:
+            bad_files.append(filename)
+        else:
+            try:
+                file_metadata = generate_metadata(namespace, dsname, filename, directory)
+            except IsADirectoryError:
+                continue
+            md.append(file_metadata)
+
+    # handle files with invalid characters in their name
+    if len(bad_files) > 0:
+        if args.fix_bad_files is True:
+            for file in bad_files:
+                file_metadata = generate_metadata(namespace, dsname, file, directory, fix=True)
+                md.append(file_metadata)
+            logger.info(f"Fixed {len(bad_files)} filenames and generated their metadata")
+            num_md_files = num_files
+        elif args.ignore_bad_files is False:
+            logger.info("The following files have a forbidden character in their name. No metadata generated. Please re-run with either '--fix-bad-files' or '--ignore-bad-files'")
+            logger.info(bad_files)
+            logger.info(f"{fv.message}")
+            sys.exit(1)
+        else:
+            logger.info("Did not generate metadata for the following files")
+            logger.info(bad_files)
+            num_md_files = num_files - len(bad_files)
+
+    else:
+        num_md_files = num_files
+
+    logger.info(f"Generated metadata for {num_md_files} files")
 
     # write the metadata to json file
     with open(outfile, "w") as f:
