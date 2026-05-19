@@ -6,6 +6,7 @@ import os
 import sys
 import json
 from urllib.parse import urlparse
+from filename_validator import filename_validator
 
 import urllib3
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
@@ -157,8 +158,30 @@ class InfoGetter:
             uuid = "b35955d3-14d1-4aab-a1c9-189989f7d8d0"
         return uuid
 
-    def generate(self, outfile):
+    def generate(self, outfile, fix_bad_files=False, ignore_bad_files=False):
         ''' generate the metadata for the scanned directories '''
+
+        # filename validation
+        fv = filename_validator()
+        bad_files = []
+        for finfo in self.file_checksum_list:
+            if not fv.check(finfo[0]):
+                bad_files.append(finfo[0])
+
+        if len(bad_files) > 0:
+            if fix_bad_files:
+                logger.info(f"Fixing {len(bad_files)} filenames and generating their metadata")
+                self.file_checksum_list = [(fv.fix(finfo[0]),)+finfo[1:] if not fv.check(finfo[0]) else finfo for finfo in self.file_checksum_list]
+            elif not ignore_bad_files:
+                logger.info("The following files have a forbidden character in their name. No metadata generated. Please re-run with either '--fix-bad-files' or '--ignore-bad-files'")
+                logger.info(bad_files)
+                logger.info(f"{fv.message}")
+                sys.exit(1)
+            else:
+                logger.info("Did not generate metadata for the following files")
+                logger.info(bad_files)
+                self.file_checksum_list = [finfo for finfo in self.file_checksum_list if finfo[0] not in bad_files]
+
 
         if self.dataset:
             dataset_txt = f" from the {self.dataset} dataset"
@@ -187,7 +210,7 @@ class InfoGetter:
             "metadata": {{
                 "AmSC.common.type": "artifact",
                 "AmSC.common.description": "File {finfo[0]}{dataset_txt} in {finfo[3]}",
-                "AmSC.common.location": "{finfo[3]}/{finfo[0]}",
+                "AmSC.common.location": "{globus_loc}",
                 "AmSC.common.display_name": "{finfo[0]}",
                 "AmSC.common.tags": "",
                 "AmSC.common.version": "",
@@ -210,6 +233,8 @@ def main():
     parser.add_argument("-o", "--outfile", default=None)
     parser.add_argument("--debug", default=False)
     parser.add_argument("--nsubdirs", "-N", help="Number of subdirectories to include in name for uniqueness", type=int, default=0)
+    parser.add_argument("--ignore-bad-files", "-I", action='store_true', help="Create the file metadata for files that have allowed filenames and ignore the files that do not")
+    parser.add_argument("--fix-bad-files", "-F", action='store_true', help="Replace invalid characters in filenames with '_' and generate their metadata")
 
     args = parser.parse_args()
 
@@ -229,7 +254,7 @@ def main():
     for basedir in args.data_directory:
         ig.get_files(basedir.strip("/"), nsd = args.nsubdirs)
 
-    ig.generate(outfile)
+    ig.generate(outfile, fix_bad_files=args.fix_bad_files, ignore_bad_files=args.ignore_bad_files)
 
 
 if __name__ == "__main__":

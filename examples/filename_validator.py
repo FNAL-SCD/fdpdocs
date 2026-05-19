@@ -8,7 +8,7 @@ class filename_validator:
             build compiled regexps, description message based on 
             ranges list and special characters accepted
         """
-        self.special = '-._'
+        self.special = '-._/'
         self.ranges = [ 'a-z', 'A-Z', '0-9' ]
         joined= ''.join(self.ranges)
         self.check_re = re.compile(f"^[{self.special}{joined}]*$")
