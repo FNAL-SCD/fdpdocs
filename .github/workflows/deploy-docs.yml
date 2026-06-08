@@ -1,7 +1,9 @@
 name: documentation
 
 on:
-  push
+  push:
+    branches:
+      - main
 
 permissions:
   contents: read
