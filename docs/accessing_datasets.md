@@ -40,6 +40,8 @@ The IDs of the other collections can be found either from globus.org (click the 
 
 Instructions for using the AmSC data movement API to transfer files via Globus can be found [here] (https://github.com/FNAL-SCD/fdpdocs/blob/main/docs/using_amsc_data_movement_api.md)
 
+Note: for uploads, the underlying dCache storage will not allow overwriting existing files, and trying to do so will fail with an "Operation not permitted" error. Either delete the existing copy beforehand, or submit the transfer with sync level 0 which will skip trying to transfer any file which already exists on the destination.
+
 ## Https/WebDAV
 
 ### Download public data using browser
