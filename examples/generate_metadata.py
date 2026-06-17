@@ -33,7 +33,7 @@ def globus_uuid(namespace):
     if namespace=="dune":
         uuid = "5ba77b68-8077-454f-b126-2c5567645e88"
     else:
-        uuid = "b35955d3-14d1-4aab-a1c9-189989f7d8d0"
+        uuid = "d24ee643-99a9-471a-9650-bc56295a75a3"
     return uuid
 
 # Generate metadata in metacat format
