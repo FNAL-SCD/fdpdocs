@@ -22,7 +22,7 @@ protocol within overall authorization flow  implemented using Oauth2 authorizati
 
 ### From globus.org
 
-https://www.globus.org/ 
+<https://www.globus.org/>
 
 Log in with Fermilab credentials.
 
@@ -32,13 +32,13 @@ Search for “Fermi Data Platform” in the collection search bar. There are sev
 
     globus transfer [source-endpoint-ID]:[/path/to/source] [destination-ID]:[/path/to/destination] 
 
-The Fermi Data Platform (read-only) endpoint ID is `b35955d3-14d1-4aab-a1c9-189989f7d8d0` and the path is `/amsc/public` 
+The Fermi Data Platform (read-only) endpoint ID is `d24ee643-99a9-471a-9650-bc56295a75a3` and the path is `/amsc/public` 
 
 The IDs of the other collections can be found either from globus.org (click the ... to view collection details), or from the following globus command
 
     globus endpoint search "fermi data platform"
 
-Instructions for using the AmSC data movement API to transfer files via Globus can be found [here] (https://github.com/FNAL-SCD/fdpdocs/blob/main/docs/using_amsc_data_movement_api.md)
+Instructions for using the AmSC data movement API to transfer files via Globus can be found [here](#using_amsc_data_movement_api)
 
 Note: for uploads, the underlying dCache storage will not allow overwriting existing files, and trying to do so will fail with an "Operation not permitted" error. Either delete the existing copy beforehand, or submit the transfer with sync level 0 which will skip trying to transfer any file which already exists on the destination.
 
@@ -46,7 +46,7 @@ Note: for uploads, the underlying dCache storage will not allow overwriting exis
 
 ### Download public data using browser
 
-https://amsc.fnal.gov:2880/amsc 
+<https://amsc.fnal.gov:2880/amsc> 
 
 Allows to browse and download publicly available data. 
 
