@@ -43,7 +43,7 @@ Then on the client machine / desktop:
       --mapped-collections 9d6d994a-6d04-11e5-ba46-22000b92c6ec \
       --domain nersc.gov
   ```
-  `b35955d3-14d1-4aab-a1c9-189989f7d8d0` is UUID of FDP globus collection and `9d6d994a-6d04-11e5-ba46-22000b92c6ec`
+  `d24ee643-99a9-471a-9650-bc56295a75a3` is UUID of FDP globus collection and `9d6d994a-6d04-11e5-ba46-22000b92c6ec`
   is UUID of Nersc globus collection. Invocaton of the script will result in something like:
   ```
   Please authenticate with Globus here:
