@@ -1,5 +1,15 @@
 #!/bin/bash
 
+do_amsc=false
+
+while [ $# -gt 1 ]
+do
+    case x$1 in
+    x--amsc) do_amsc=true; shift;;
+    *)       echo "unknown argument '$1'"; shift;;
+    esac
+done
+
 # bootstrap
 virtualenv $PWD/uv_bootstrap
 source uv_bootstrap/bin/activate
@@ -26,9 +36,12 @@ export METACAT_AUTH_SERVER_URL=https://metacat.fnal.gov:8143/auth/amsc
 export UV_PYTHON_INSTALL_DIR=$PWD/python_versions
 EOF
 
-# add the amsc python client stuff
-git clone https://github.com/amsc-interfaces/amsc-client-tutorial.git
+if $do_amsc
+then
+    # add the amsc python client stuff
+    git clone https://github.com/amsc-interfaces/amsc-client-tutorial.git
 
-(cd amsc-client-tutorial ; uv pip install -r requirements.txt)
+    (cd amsc-client-tutorial ; uv pip install -r requirements.txt)
+fi
 
 
