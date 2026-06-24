@@ -2,11 +2,28 @@
 
 do_amsc=false
 
-while [ $# -gt 1 ]
+help() {
+   echo "usage: $0 [--help] [--amsc] [--dest dir]"
+   echo "bootstrap a python area for FDP clients"
+   echo " --help     print this message"
+   echo " --amsc     also install amsc client package"
+   echo " --dest dir install in specified directory dir"
+   echo "            (default current directory)"
+}
+
+dest() {
+   # make and move to destination directory
+   mkdir -p $1
+   cd $1
+}
+
+while [ $# -ge 1 ]
 do
     case x$1 in
+    x--help) help; exit 0;;
     x--amsc) do_amsc=true; shift;;
-    *)       echo "unknown argument '$1'"; shift;;
+    x--dest) dest $2; shift; shift;;
+    *)       echo "unknown argument '$1'"; help; exit 1;;
     esac
 done
 
