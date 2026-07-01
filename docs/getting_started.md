@@ -20,10 +20,10 @@ Next to get an affliation role you need to click here: [ServiceNowRoles](https:/
 ## Next Steps
 
 Once you have the affliation and role you should be able to start writing data to the FDP area.
-One thing you will need for both uploading and seeing data as well as working on adding metadata you will need a token. 
+You will need a token for reading and writing data and metadata.
 Below is an example of using OIDC token authorized to access dune project directories for read:
 
-    htgettoke -a htvaultprod.fnal.gov -i amsc -r duneread
+    htgettoken -a htvaultprod.fnal.gov -i amsc -r duneread
     export BEARER_TOKEN=$(< $XDG_RUNTIME_DIR/bt_u$(id -u))
 
 
