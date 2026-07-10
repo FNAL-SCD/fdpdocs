@@ -189,3 +189,7 @@ For now only the above fields are used by the central AmSC data catalog. If you 
 
     After running this script, you should be able to see the updated metadata in MetaCat.
 
+
+## FDP area of the AmSC OpenMetadata database
+Global DB that will be synched with the FDP local metacat database to contain a copy of the metadata for your datasets, including the list of files, 
+allowing you to access your files through AmSC utilities (see https://openmetadata-staging.american-science-cloud.org/container/fnal-amsc-storage.fnal-amsc-data-catalog when you are authorized)
