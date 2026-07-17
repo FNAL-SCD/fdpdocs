@@ -10,7 +10,5 @@ The Fermilab Data Platform, or FDP, provides secure, scalable access to high-val
 Backed by decades of Fermilab leadership in large-scale, international physics experiments, FDP leverages proven expertise in managing and delivering complex research data.
 Through its role in Genesis, Fermilab contributes technical and scientific expertise to projects exploring fundamental connections between the smallest building blocks of matter and the largest structures in the universe, helping advance AI-enabled science, discovery, and national leadership.
 As an infrastructure partner for the Genesis Mission — a major initiative using artificial intelligence to transform scientific discovery — FDP enables researchers to access curated datasets locally and remotely through reliable, high-performance services. 
-Data is available via streaming and file transfer using established tools such as XRootD, WebDAV, and Globus, supported by several petabytes of secure disk storage.
-Metadata is also being pushed to central AmSC as well as can be seen locally. 
-We are using MetaCat as the service for metadata.
-
+Data is available via streaming and file transfer using established tools such as XRootD, WebDAV, and Globus, supported by several petabytes of secure disk storage on a secure disk storage on dCache..
+Metadata is stored locally in MetaCat and is sync'ed to the central American Science Cloud (AmSC) data catalog.

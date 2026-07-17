@@ -70,6 +70,8 @@ See more details in the [MetaCat documentation](https://fermitools.github.io/met
 
 ### AmSC catalog requirements
 
+The metadata fields listed below are synced from MetaCat to the central AmSC catalog. You can browse the FDP datasets in AmSC [here](https://openmetadata-staging.american-science-cloud.org/container/fnal-amsc-storage.fnal-amsc-data-catalog ) (requires AmSC credentials).
+
 There are some metadata fields that are required by the central AmSC catalog.
 
 The following fields need to be included for both datasets and files:
@@ -190,6 +192,3 @@ For now only the above fields are used by the central AmSC data catalog. If you 
     After running this script, you should be able to see the updated metadata in MetaCat.
 
 
-## FDP area of the AmSC OpenMetadata database
-Global DB that will be synched with the FDP local metacat database to contain a copy of the metadata for your datasets, including the list of files, 
-allowing you to access your files through AmSC utilities (see https://openmetadata-staging.american-science-cloud.org/container/fnal-amsc-storage.fnal-amsc-data-catalog when you are authorized)
