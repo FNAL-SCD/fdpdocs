@@ -31,7 +31,7 @@ Search for “Fermi Data Platform” in the collection search bar. There are sev
 
     globus transfer [source-endpoint-ID]:[/path/to/source] [destination-ID]:[/path/to/destination] 
 
-The Fermi Data Platform (read-only) endpoint ID is `d24ee643-99a9-471a-9650-bc56295a75a3` and the path is `/amsc/public` 
+The Fermi Data Platform (read-only) endpoint ID is `73edb319-d876-4143-b5fc-5a47c61b0c02` and the path is `/amsc/public` 
 
 The IDs of the other collections can be found either from globus.org (click the ... to view collection details), or from the following `globus` command
 
