@@ -6,9 +6,7 @@ FDP supports data access utilizing the following protocols:
 * XRootD
 * Globus
 
-The data is organized in hierarchical directory tree structure with parts of the tree
-publicly accessible for reads. All write access  and read access to some parts of the tree 
-requires authentication. 
+The data is organized in hierarchical directory tree structure. Public data (accessible without authentication) is located in `/amsc/public/<project name>`. Data requiring authentication for read access is located in `/amsc/<project name>`. All write access requires authentication.
 
 ## Authentication and Authorization
 
