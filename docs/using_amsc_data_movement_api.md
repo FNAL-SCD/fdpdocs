@@ -39,11 +39,11 @@ Then on the client machine / desktop:
   Where UUIDs are UUIDs of globus source and collections. Specifically, using FDP and my account at Nersc:
   ```
   uv run generate_token.py login \
-      --mapped-collections b35955d3-14d1-4aab-a1c9-189989f7d8d0 \
+      --mapped-collections 73edb319-d876-4143-b5fc-5a47c61b0c02 \
       --mapped-collections 9d6d994a-6d04-11e5-ba46-22000b92c6ec \
       --domain nersc.gov
   ```
-  `d24ee643-99a9-471a-9650-bc56295a75a3` is UUID of FDP globus collection and `9d6d994a-6d04-11e5-ba46-22000b92c6ec`
+  `73edb319-d876-4143-b5fc-5a47c61b0c02` is UUID of FDP globus collection and `9d6d994a-6d04-11e5-ba46-22000b92c6ec`
   is UUID of Nersc globus collection. Invocaton of the script will result in something like:
   ```
   Please authenticate with Globus here:
@@ -104,4 +104,3 @@ Then on the client machine / desktop:
     "effective_bytes_per_second": 1150306465
   }
   ```
-  
