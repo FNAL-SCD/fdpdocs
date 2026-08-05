@@ -64,15 +64,15 @@ Then on the client machine / desktop:
   ```
   export GLOBUS_ACCESS_TOKEN="Ag...." # (your globus access token)
 
-  curl -X 'POST' \
+  curl -L -X 'POST' \
   'https://amsc-data-api.nersc.gov/transfer/globus' \
   -H 'accept: application/json' \
   -H "Authorization: $GLOBUS_ACCESS_TOKEN" \
   -H 'Content-Type: application/json' \
-  -d '{ \
-  "source_url": "globus://b35955d3-14d1-4aab-a1c9-189989f7d8d0/amsc/cms/aoj/", \
-  "destination_url": "globus://9d6d994a-6d04-11e5-ba46-22000b92c6ec/pscratch/sd/d/dimlit/", \
-  "label": "Test transfer of AOJ dataset." \
+  -d '{ 
+  "source_url": "globus://b35955d3-14d1-4aab-a1c9-189989f7d8d0/amsc/cms/aoj/", 
+  "destination_url": "globus://9d6d994a-6d04-11e5-ba46-22000b92c6ec/pscratch/sd/d/dimlit/", 
+  "label": "Test transfer of AOJ dataset." 
   }'
   ```
   It should return json containing `transfer_uuid`:
@@ -88,7 +88,7 @@ Then on the client machine / desktop:
   ```
   that can be used to query request status:
   ```
-  curl  -s  -H "Authorization: $GLOBUS_ACCESS_TOKEN" \
+  curl  -s -L -H "Authorization: $GLOBUS_ACCESS_TOKEN" \
    -H 'Content-Type: application/json' \
    "https://amsc-data-api.nersc.gov/transfer/globus/6ec65387-2322-11f1-927c-02ea150f82e1"
   ```
