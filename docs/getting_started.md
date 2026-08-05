@@ -1,4 +1,4 @@
-### Getting Started
+# Getting Started
 
 To get started on using the Fermi Data Platform (FDP) you need to be added to the FDP VO. 
 
