@@ -4,7 +4,7 @@ This document describes how to set up and get started with MetaCat for FDP. The 
 
 ## Prerequisites
 
-1. Obtain access to amsc VO.  <!-- add link to documentation on getting added to amsc vo once it exists -->
+1. Obtain access to amsc VO. See [Getting Started](getting_started.md) for instructions on getting access.
 1. Set up the software environment.
 
 Create a python environment.
@@ -36,7 +36,7 @@ When you're done using MetaCat,
 
 ## Login to MetaCat
 
-The web interface is here: https://metacat.fnal.gov:9443/amsc_meta_prod/app/gui
+The web interface is here: <https://metacat.fnal.gov:9443/amsc_meta_prod/app/gui>
 
 To login to MetaCat via the command line:
 
