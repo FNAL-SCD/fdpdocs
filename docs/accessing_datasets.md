@@ -15,7 +15,7 @@ protocol within overall authorization flow implemented using OAuth2 authorizatio
 
 Currently only Fermilab OIDC authentication is supported, although it is planned to extend this to other identity providers. 
 
-<!-- add link to documentation on getting added to amsc vo once it exists -->
+See [Getting Started](getting_started.md) for instructions on getting access to FDP.
 
 ## Globus 
 
