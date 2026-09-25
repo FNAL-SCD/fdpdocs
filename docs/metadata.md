@@ -88,6 +88,8 @@ There are additional optional metadata fields that can be included in the centra
 
 For now only the above fields are used by the central AmSC data catalog. If you would like any other information to appear there, you can add it in the description field.
 
+**Note:** Please note that if you include the word "test" in your namespace name, then your metadata will not be migrated to the AmSC catalog.
+
 ## Example scripts
 
 1. Generating metadata in MetaCat format
