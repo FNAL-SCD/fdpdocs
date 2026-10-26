@@ -130,7 +130,7 @@ Copy a file:
 
 List a directory: 
 
-    xrdfs root://amsc.fnal.gov ls –l /amsc/public
+    xrdfs root://amsc.fnal.gov ls -l /amsc/public
 
 Using gfal, which requires the `gfal2-*` packages: 
 
