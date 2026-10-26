@@ -52,9 +52,9 @@ Allows to browse and download publicly available data.
 
 ### Download public data to local host using curl
 
-    curl -s -f –L https://amsc.fnal.gov:2880/[source_path] -o [destination_path] 
+    curl -sSfL -O https://amsc.fnal.gov:2880/[source_path]
 
-The `source_path` is the path to the data on `/amsc/public/...` 
+The `source_path` is the path to the data on `/amsc/public/...`. If you want to write the output somewhere other than the current directory, replace `-O` with `-o /path/to/output/file` (which must end with a file name, not a directory).
 
 ### Download public data to local host using gfal
 
