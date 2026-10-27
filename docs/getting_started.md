@@ -54,7 +54,7 @@ Once the previous steps are complete, you will be able to get a token. This requ
 Below is an example of using an OIDC token authorized to access dune project directories for reading:
 
 ```
-htgettoken -a htvaultprod.fnal.gov -i amsc -r duneread
+htgettoken -a htvaultprod.fnal.gov -i amsc -r <ROLENAME>read
 export BEARER_TOKEN=$(< $XDG_RUNTIME_DIR/bt_u$(id -u))
 ```
 
