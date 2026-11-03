@@ -1,3 +1,5 @@
+# Setup
+
 ## Installing required packages
 
 Dependencies are listed in [pyproject.toml](https://github.com/FNAL-SCD/fdpdocs/blob/main/pyproject.toml) in [this repository](https://github.com/FNAL-SCD/fdpdocs). Some are optional depending on which data access method you plan to use.
