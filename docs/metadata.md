@@ -5,45 +5,16 @@ This document describes how to set up and get started with MetaCat for FDP. The 
 ## Prerequisites
 
 1. Obtain access to amsc VO. See [Getting Started](getting_started.md) for instructions on getting access.
-1. Set up the software environment.
-
-Create a python environment.
-
-    python3 -m venv ~/.venv/metacat
-
-Create a script called `activate-metacat.sh` that activates the environment and sets the required environment variables with the following contents:
-
-    #!/usr/bin/env bash
-    source ~/.venv/metacat/bin/activate
-    export METACAT_SERVER_URL="https://metacat.fnal.gov:9443/amsc_meta_prod/app"
-    export METACAT_AUTH_SERVER_URL="https://metacat.fnal.gov:8143/auth/amsc"
-
-Note that these instructions assume a bash-compatible shell. If you are using another shell, run the script using bash.
-
-Activate the environment and install the metacat client and htgettoken packages:
-
-    source activate-metacat.sh
-    pip install metacat-client
-    pip install htgettoken
-
-Every time you want to use MetaCat, do
-
-    source activate-metacat.sh
-
-When you're done using MetaCat,
-
-    deactivate
+1. Set up the software environment. See [Getting Started](getting_started.md#installing-required-packages) for instructions on installing dependencies.
+1. Get a token. See [Getting a Token](getting_started.md#getting-a-token).
 
 ## Login to MetaCat
 
-The web interface is here: <https://metacat.fnal.gov:9443/amsc_meta_prod/app/gui>
+The web interface is here: <https://metacat.fnal.gov:9443/amsc_meta_prod/app/gui>. Login using your Fermilab services account credentials.
 
-To login to MetaCat via the command line:
+To login to MetaCat via the command line, using the token obtained above:
 
-    htgettoken -i amsc -a htvaultprod.fnal.gov
     metacat auth login -m token <username>
-
-The first time, and occasionally after, doing the htgettoken step, the command will prompt you to login using your web browser. Follow the instructions as prompted.
 
 Now you are ready to use any metacat commands. Test with
 
