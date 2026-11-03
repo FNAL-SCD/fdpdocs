@@ -1,6 +1,6 @@
 ## Installing required packages
 
-Dependencies are listed in pyproject.toml in this repository. Some are optional depending on which data access method you plan to use.
+Dependencies are listed in [pyproject.toml](https://github.com/FNAL-SCD/fdpdocs/blob/main/pyproject.toml) in [this repository](https://github.com/FNAL-SCD/fdpdocs). Some are optional depending on which data access method you plan to use.
 
 To install in a python environment,
 
@@ -11,9 +11,9 @@ source ~/.venv/fdpdocs/bin/activate
 
 ### Required packages
 
-Most users will only need the required dependencies. Install with `pip install .`
+Most users will only need the required dependencies. Install with `pip install .` after navigating to the directory containing pyporject.toml.
 
-Also run `source fdp-env.sh` in order to set the environment variables needed for using MetaCat.
+Also run `source fdp-env.sh` in order to set the environment variables needed for using MetaCat. `fdp-env.sh` can be found [here](https://github.com/FNAL-SCD/fdpdocs/blob/main/fdp-env.sh).
 
 Note that these instructions assume a bash-compatible shell. If you are using another shell, run the script using bash.
 
@@ -31,7 +31,7 @@ You can also run `pip install ".[all]"` to install all optional dependencies.
 
 ### Installing packages via a bash script
 
-Alternatively, if you prefer, run `bash bootstrap_fdp.bash` to install most of these dependencies (though not the tutorial notebook's requirements — see below).
+Alternatively, if you prefer, run `bash bootstrap_fdp.bash` (found [here](https://github.com/FNAL-SCD/fdpdocs/blob/main/examples/bootstrap_fdp.bash)) to install most of these dependencies (though not the tutorial notebook's requirements — see below).
 
 ## Getting a Token
 
@@ -50,5 +50,5 @@ The first time you run the htgettoken step, and occasionally after, it will prom
 
 Now you can start reading and writing data and metadata to the FDP area. See [Accessing Datasets on Fermi Data Platform](accessing_datasets.md) for more information on reading and writing data, and [Using MetaCat](metadata.md) for more information on adding metadata.
 
-There is a jupyter notebook (fdp_tutorial.ipynb) in this repository which walks through how to read and write data and metadata on FDP. You will need to `pip install ".[tutorial]"` to install the dependencies required for the tutorial. Make sure to get a token via the `htgettoken` command above before starting the notebook if you would like to do any operations other than reading public data and metadata.
+There is a jupyter notebook ([fdp_tutorial.ipynb](https://github.com/FNAL-SCD/fdpdocs/blob/main/examples/fdp_tutorial.ipynb)) in this repository which walks through how to read and write data and metadata on FDP. You will need to `pip install ".[tutorial]"` to install the dependencies required for the tutorial. Make sure to get a token via the `htgettoken` command above before starting the notebook if you would like to do any operations other than reading public data and metadata.
 

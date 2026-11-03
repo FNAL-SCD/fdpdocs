@@ -55,7 +55,7 @@ copybutton_prompt_text = r"\$ "
 copybutton_prompt_is_regexp = True
 
 html_theme_options = {
-    "repository_url": "https://github.com/fermitools/declad",
+    "repository_url": "https://github.com/FNAL-SCD/fdpdocs",
     "use_repository_button": True,
     "navigation_depth": 4,  # how many levels of nested headers show in sidebar
     "collapse_navigation": False,
@@ -67,4 +67,4 @@ html_theme_options = {
 html_static_path = ['_static']
 
 # moving to fermitools.github.io
-#html_baseurl = 'https://fermitools.github.io/DeclaD/'
+#html_baseurl = 'https://fnal-scd.github.io/fdpdocs/'
