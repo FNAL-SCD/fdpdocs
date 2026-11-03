@@ -11,6 +11,7 @@ Please note that this documentation is currently a work in progress. More docs w
 
     intro
     getting_started
+    setup
     accessing_datasets
     metadata
     using_amsc_data_movement_api
