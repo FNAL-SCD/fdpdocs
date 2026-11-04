@@ -13,7 +13,7 @@ source ~/.venv/fdpdocs/bin/activate
 
 ### Required packages
 
-Most users will only need the required dependencies. Install with `pip install .` after navigating to the directory containing pyporject.toml.
+Most users will only need the required dependencies. Install with `pip install .` after navigating to the directory containing pyproject.toml.
 
 Also run `source fdp-env.sh` in order to set the environment variables needed for using MetaCat. `fdp-env.sh` can be found [here](https://github.com/FNAL-SCD/fdpdocs/blob/main/fdp-env.sh).
 
