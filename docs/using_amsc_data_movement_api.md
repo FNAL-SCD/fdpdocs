@@ -8,7 +8,7 @@ LBNL runs prototype implementation of AMSC data movement API server
 at https://amsc-data-api.nersc.gov. There is swagger UI with RES APIs 
 documenation https://amsc-data-api.nersc.gov/docs
 
-# How to transfer data between FDP and Nersc globus end point using AMSC data movement API
+## How to transfer data between FDP and Nersc globus end point using AMSC data movement API
 
 First, one has to obtain account at Nersc. 
 
@@ -39,11 +39,11 @@ Then on the client machine / desktop:
   Where UUIDs are UUIDs of globus source and collections. Specifically, using FDP and my account at Nersc:
   ```
   uv run generate_token.py login \
-      --mapped-collections b35955d3-14d1-4aab-a1c9-189989f7d8d0 \
+      --mapped-collections 73edb319-d876-4143-b5fc-5a47c61b0c02 \
       --mapped-collections 9d6d994a-6d04-11e5-ba46-22000b92c6ec \
       --domain nersc.gov
   ```
-  `d24ee643-99a9-471a-9650-bc56295a75a3` is UUID of FDP globus collection and `9d6d994a-6d04-11e5-ba46-22000b92c6ec`
+  `73edb319-d876-4143-b5fc-5a47c61b0c02` is UUID of FDP globus collection and `9d6d994a-6d04-11e5-ba46-22000b92c6ec`
   is UUID of Nersc globus collection. Invocaton of the script will result in something like:
   ```
   Please authenticate with Globus here:
@@ -57,22 +57,22 @@ Then on the client machine / desktop:
   ```
   Enter the resulting Authorization Code here:
   ```
-  prompt. You will get your globus access token in return. You can use environmen
+  prompt. You will get your globus access token in return. You can use environment
   variable, say GLOBUS_ACCESS_TOKEN, to store the access token.
   This globus access token can be used to initiate transfers.
   Example:
   ```
   export GLOBUS_ACCESS_TOKEN="Ag...." # (your globus access token)
 
-  curl -X 'POST' \
+  curl -L -X 'POST' \
   'https://amsc-data-api.nersc.gov/transfer/globus' \
   -H 'accept: application/json' \
   -H "Authorization: $GLOBUS_ACCESS_TOKEN" \
   -H 'Content-Type: application/json' \
-  -d '{ \
-  "source_url": "globus://b35955d3-14d1-4aab-a1c9-189989f7d8d0/amsc/cms/aoj/", \
-  "destination_url": "globus://9d6d994a-6d04-11e5-ba46-22000b92c6ec/pscratch/sd/d/dimlit/", \
-  "label": "Test transfer of AOJ dataset." \
+  -d '{ 
+  "source_url": "globus://73edb319-d876-4143-b5fc-5a47c61b0c02/amsc/public/treasure/aoj/", 
+  "destination_url": "globus://9d6d994a-6d04-11e5-ba46-22000b92c6ec/pscratch/sd/d/dimlit/", 
+  "label": "Test transfer of AOJ dataset." 
   }'
   ```
   It should return json containing `transfer_uuid`:
@@ -80,7 +80,7 @@ Then on the client machine / desktop:
   [
   {
     "name": "Test transfer of AOJ dataset.",
-    "source_url": "globus://b35955d3-14d1-4aab-a1c9-189989f7d8d0/amsc/cms/aoj/",
+    "source_url": "globus://73edb319-d876-4143-b5fc-5a47c61b0c02/amsc/public/treasure/aoj/",
     "destination_url": "globus://9d6d994a-6d04-11e5-ba46-22000b92c6ec/pscratch/sd/d/dimlit/",
     "transfer_uuid": "6ec65387-2322-11f1-927c-02ea150f82e1"
   }
@@ -88,7 +88,7 @@ Then on the client machine / desktop:
   ```
   that can be used to query request status:
   ```
-  curl  -s  -H "Authorization: $GLOBUS_ACCESS_TOKEN" \
+  curl  -s -L -H "Authorization: $GLOBUS_ACCESS_TOKEN" \
    -H 'Content-Type: application/json' \
    "https://amsc-data-api.nersc.gov/transfer/globus/6ec65387-2322-11f1-927c-02ea150f82e1"
   ```
@@ -104,4 +104,3 @@ Then on the client machine / desktop:
     "effective_bytes_per_second": 1150306465
   }
   ```
-  

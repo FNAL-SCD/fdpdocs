@@ -4,46 +4,17 @@ This document describes how to set up and get started with MetaCat for FDP. The 
 
 ## Prerequisites
 
-1. Obtain access to amsc VO.  <!-- add link to documentation on getting added to amsc vo once it exists -->
-1. Set up the software environment.
-
-Create a python environment.
-
-    python3 -m venv ~/.venv/metacat
-
-Create a script called `activate-metacat.sh` that activates the environment and sets the required environment variables with the following contents:
-
-    #!/usr/bin/env bash
-    source ~/.venv/metacat/bin/activate
-    export METACAT_SERVER_URL="https://metacat.fnal.gov:9443/amsc_meta_prod/app"
-    export METACAT_AUTH_SERVER_URL="https://metacat.fnal.gov:8143/auth/amsc"
-
-Note that these instructions assume a bash-compatible shell. If you are using another shell, run the script using bash.
-
-Activate the environment and install the metacat client and htgettoken packages:
-
-    source activate-metacat.sh
-    pip install metacat-client
-    pip install htgettoken
-
-Every time you want to use MetaCat, do
-
-    source activate-metacat.sh
-
-When you're done using MetaCat,
-
-    deactivate
+1. Obtain access to amsc VO. See [Getting Started](getting_started.md) for instructions on getting access.
+1. Set up the software environment. See [Getting Started](getting_started.md#installing-required-packages) for instructions on installing dependencies.
+1. Get a token. See [Getting a Token](getting_started.md#getting-a-token).
 
 ## Login to MetaCat
 
-The web interface is here: https://metacat.fnal.gov:9443/amsc_meta_prod/app/gui
+The web interface is here: <https://metacat.fnal.gov:9443/amsc_meta_prod/app/gui>. Login using your Fermilab services account credentials.
 
-To login to MetaCat via the command line:
+To login to MetaCat via the command line, using the token obtained above:
 
-    htgettoken -i amsc -a htvaultprod.fnal.gov
     metacat auth login -m token <username>
-
-The first time, and occasionally after, doing the htgettoken step, the command will prompt you to login using your web browser. Follow the instructions as prompted.
 
 Now you are ready to use any metacat commands. Test with
 
@@ -70,6 +41,8 @@ See more details in the [MetaCat documentation](https://fermitools.github.io/met
 
 ### AmSC catalog requirements
 
+The metadata fields listed below are synced from MetaCat to the central AmSC catalog. You can browse the FDP datasets in AmSC [here](https://openmetadata-staging.american-science-cloud.org/container/fnal-amsc-storage.fnal-amsc-data-catalog ) (requires AmSC credentials).
+
 There are some metadata fields that are required by the central AmSC catalog.
 
 The following fields need to be included for both datasets and files:
@@ -85,6 +58,8 @@ There are additional optional metadata fields that can be included in the centra
     AmSC.common.display_name
 
 For now only the above fields are used by the central AmSC data catalog. If you would like any other information to appear there, you can add it in the description field.
+
+**Note:** Please note that if you include the word "test" in your namespace name, then your metadata will not be migrated to the AmSC catalog.
 
 ## Example scripts
 
@@ -188,4 +163,5 @@ For now only the above fields are used by the central AmSC data catalog. If you 
         python update_metadata.py --inputfile updated_metadata.json
 
     After running this script, you should be able to see the updated metadata in MetaCat.
+
 

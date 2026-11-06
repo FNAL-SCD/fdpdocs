@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fdpdocs"
+version = "0.1.0"
+description = "Dependencies for accessing the Fermi Data Platform (FDP) from Python"
+requires-python = ">=3.9"
+dependencies = [
+    # Download/upload/browse over HTTPS/WebDAV — the default access method.
+    "requests",
+    # Needed to obtain bearer tokens for any authenticated access (private data, any writes).
+    "htgettoken",
+    # MetaCat client, for reading/declaring/updating file and dataset metadata.
+    "metacat-client",
+]
+
+[project.optional-dependencies]
+# XRootD client access, including the fsspec plugin for root:// URLs.
+xrootd = ["xrootd", "fsspec-xrootd"]
+# Globus CLI/SDK access
+globus = ["globus-cli", "globus-sdk", "typer"]
+# gfal2-based access.
+gfal = ["gfal"]
+# Everything needed to run examples/fdp_tutorial.ipynb.
+tutorial = [
+    "jupyterlab",
+    "notebook",
+    "ipykernel",
+    "h5py",
+    "fsspec",
+    "aiohttp",
+]
+# All access methods and the tutorial.
+all = ["fdpdocs[xrootd,globus,gfal,tutorial]"]
+
+[tool.setuptools]
+packages = []

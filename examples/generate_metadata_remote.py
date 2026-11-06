@@ -155,7 +155,7 @@ class InfoGetter:
         if self.namespace=="dune":
             uuid = "5ba77b68-8077-454f-b126-2c5567645e88"
         else:
-            uuid = "d24ee643-99a9-471a-9650-bc56295a75a3"
+            uuid = "73edb319-d876-4143-b5fc-5a47c61b0c02"
         return uuid
 
     def generate(self, outfile, fix_bad_files=False, ignore_bad_files=False):
