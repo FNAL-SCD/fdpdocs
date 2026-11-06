@@ -13,4 +13,8 @@ Once your request has been approved and completed, you will recieve a
 confirmation email, and you will be able to access resources like the
 [AmSC MAG Interface](https://mag.genesis.americansciencecloud.org.) 
 with your Fermilab credentials.
-
+When you go to that, or other American Science Cloud webpages, you will
+get a login page that lets you choose your identity provider.  You should
+choose "Fermilab", and then choose which sort of two-factor login you 
+want to use, and log in with your Fermilab SSO / Services password, and 
+two-factor response. 
