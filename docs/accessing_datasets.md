@@ -65,6 +65,7 @@ Using gfal, which requires the `gfal2-*` packages:
 
     gfal-copy https://amsc.fnal.gov:2880/amsc/[source_path] [destination_path]
 
+
 ### Download project specific data requiring authorization using curl
 
 Below is an example of using OIDC token authorized to access dune project directories for read:
@@ -80,6 +81,10 @@ Below is an example of using OIDC token authorized to access dune project direct
     htgettoken -a htvaultprod.fnal.gov -i amsc -r duneread 
     export BEARER_TOKEN=$(< $XDG_RUNTIME_DIR/bt_u$(id -u))
     gfal-copy https://amsc.fnal.gov:2880/[source_path] [destination_path]
+
+To recursively copy a whole directory tree:
+
+    gfal-copy -D "HTTP PLUGIN:RETRIEVE_BEARER_TOKEN=False" -r https://amsc.fnal.gov:2880/amsc/[source_path] [destination_path]
 
 ### Upload data from local host using curl
 
