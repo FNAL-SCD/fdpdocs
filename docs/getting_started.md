@@ -13,8 +13,74 @@ Approval can take anywhere from a few hours to a few weeks. Once approved, you w
 
 ## Getting Affiliation Roles
 
+There are three options. 
+
+# Option 1
+If you are just requesting an area on FDP then make sure step one is done and whoever needs access is listed and emailed. When the role is requested the people who need access will also be listed to get the role as well.
+
+# Option 2
 Next to get an affiliation role you need to click here: [ServiceNowRoles](https://fermi.servicenowservices.com/now/nav/ui/classic/params/target/com.glideapp.servicecatalog_cat_item_view.do%3Fv%3D1%26sysparm_id%3D423d4bb41b4e2550746aa82fe54bcb8b%26sysparm_link_parent%3Da5a8218af15014008638c2db58a72314%26sysparm_catalog%3De0d08b13c3330100c8b837659bba8fb4%26sysparm_catalog_view%3Dcatalog_default%26sysparm_view%3Dcatalog_default)
 
 - Click the add button.
 - In the affiliation type in Fermi Data Platform hit search, then click on Fermi Data Platform.
 - Click the lock under the affiliation roles, then hit the magnifying glass/search. Then search for your experiment and click add. Then click submit.
+
+If your role is not listed then you can either to option 1 or option 3.
+
+# Option 3
+Users can open a ticket here for a role: [ServiceNowRole][https://fermi.servicenowservices.com/now/nav/ui/classic/params/target/cmdb\_ci\_service.do%3Fsys\_id%3D9d4260a86f46420032544d1fde3ee4c2%26sysparm\_view%3Dess%26sysparm\_affiliation%3D]
+Please follow the form instructions.
+### Form Instructions
+
+- Confirm **Requested For** shows your name
+- Set **Experiment** to **Other**
+- Check **Need distributed computing**
+- Add yourself and **Shreyas Bhat** to the **watch list**
+
+**Short Description:**
+
+```
+New role for a set of new GID/UIDs
+```
+
+**Description** (replace NAME and PATHNAME with your actual values):
+
+```
+I would like roles for this set of UID/GIDs:
+
+NAME      GID
+NAMEwrite UID
+NAMEread  UID
+
+Role name: NAMEwrite
+
+With scopes:
+  "compute.cancel",
+  "compute.create",
+  "compute.modify",
+  "compute.read",
+  "storage.modify:/amsc/PATHNAME",
+  "storage.modify:/amsc/public/PATHNAME",
+  "storage.read:/amsc/PATHNAME",
+  "storage.read:/amsc/public"
+```
+
+### Example — Experiment
+
+```
+Experiment   Experiment      GID
+Experiment   ExperimentWRITE UID
+Experiment   ExperimentREAD  UID
+
+Role name: ExperimentWRITE
+
+With scopes:
+  "compute.cancel",
+  "compute.create",
+  "compute.modify",
+  "compute.read",
+  "storage.modify:/amsc/Experiment",
+  "storage.modify:/amsc/public/Experiment",
+  "storage.read:/amsc/Experiment",
+  "storage.read:/amsc/public"
+```
