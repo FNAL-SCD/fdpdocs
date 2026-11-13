@@ -11,6 +11,8 @@ To request an account, click here [ServiceNow](https://fermi.servicenowservices.
 
 Approval can take anywhere from a few hours to a few weeks. Once approved, you will be a member of The Fermi Data Platform affiliation and the local `amsc` VO.
 
+You will recieve and email that is only step one you still need to be added to a affliation role before you will actaully have access to FDP.
+
 ## Getting Affiliation Roles
 
 There are two options to get a role/token. First you should make sure that your area is created on fdp.
