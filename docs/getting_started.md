@@ -30,7 +30,7 @@ To see if your project is listed.
 If your experiment or project is listed, you can obtain an affiliation role using one of the following options::
 
 # Option 1
-Users can open a ticket here for a role: [ServiceNowRole][https://fermi.servicenowservices.com/now/nav/ui/classic/params/target/cmdb\_ci\_service.do%3Fsys\_id%3D9d4260a86f46420032544d1fde3ee4c2%26sysparm\_view%3Dess%26sysparm\_affiliation%3D]
+Users can open a ticket here for a role: [ServiceNowRole](https://fermi.servicenowservices.com/now/nav/ui/classic/params/target/cmdb\_ci\_service.do%3Fsys\_id%3D9d4260a86f46420032544d1fde3ee4c2%26sysparm\_view%3Dess%26sysparm\_affiliation%3D)
 Please follow the form instructions.
 ### Form Instructions
 
